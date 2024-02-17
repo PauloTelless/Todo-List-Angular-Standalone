@@ -7,13 +7,15 @@ import { TodoKeyLocalStorage } from '../models/enum/todoKeyLocalStorage';
 })
 export class TodoListService {
 
-    public todoState = signal<Array<Todo>>([]);
+    public todosState = signal<Array<Todo>>([]);
 
     public updateTodos({id, title, description, done}: Todo): void{
       if (title && description && done != null || undefined) {
-         this.todoState.mutate((todos) => {
+         this.todosState.mutate((todos) => {
           if (todos != null) {
             todos.push(new Todo(id, title, description, done));
+
+            console.log(todos)
             this.saveTodoInLocalStorage()
           }
          })
@@ -21,7 +23,7 @@ export class TodoListService {
     }
 
     public saveTodoInLocalStorage(): void{
-      const TODOS = JSON.stringify(this.todoState())
+      const TODOS = JSON.stringify(this.todosState())
       TODOS && localStorage.setItem(TodoKeyLocalStorage.TODO_LIST, TODOS)
     }
 }

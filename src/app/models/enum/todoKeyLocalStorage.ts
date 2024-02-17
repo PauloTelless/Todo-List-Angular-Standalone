@@ -1,3 +1,3 @@
-export enum TodoKeyLocalStorage{
-  TODO_LIST = 'TODO_LIST'
+export enum TodoKeyLocalStorage {
+  TODO_LIST = "TODO_LIST"
 }
